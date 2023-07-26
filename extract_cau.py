@@ -16,8 +16,8 @@ def check_cau(image_cau, img, column):
         return False
 
 
-def extract_cau_(file):
-    img = cv2.imread(file + "/page1_cutted.png", cv2.IMREAD_COLOR)
+def extract_cau_(folder):
+    img = cv2.imread(folder + "/page1_cutted.png", cv2.IMREAD_COLOR)
     h, w, c = img.shape
     column_white = img[h * 3 // 4:, 0, :]
     column = 0
@@ -31,12 +31,10 @@ def extract_cau_(file):
                 comparison1 = img_column[-1, :] == img_column[line, :]
                 equal_image1 = comparison1.all()
                 if equal_image1 == False:
-                    # img_____ = img[:h-line,column:,:]
-                    # cv2.imwrite(file+"/xxxxx.png", img_____)
                     img_cau = img[h - img_column.shape[0] + line - 40:h - img_column.shape[0] + line + 30,
                               column - 10:column + 150, :]
                     if check_cau(img_cau, img, column):
-                        cv2.imwrite(file + "/cau.png", img_cau)
+                        cv2.imwrite(folder + "/cau.png", img_cau)
                         return column
                 line -= 1
                 if line < 50:
