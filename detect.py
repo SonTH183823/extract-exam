@@ -1,8 +1,9 @@
 import cv2
-
+import os
 def detect_cau(file, column):
     img = cv2.imread(file + "/image_full.png", cv2.IMREAD_COLOR)
     image_cau = cv2.imread(file + "/cau.png", cv2.IMREAD_COLOR)
+    os.mkdir(file+'/questions')
     list_cau = []
 
     for i in range(img.shape[0] - image_cau.shape[0]):
@@ -13,10 +14,10 @@ def detect_cau(file, column):
             if equal_image:
                 list_cau.append((i, j))
     for i in range(len(list_cau) - 1):
-        image_detect = img[list_cau[i][0] - 10:list_cau[i + 1][0] - 10, list_cau[i][1] - 20:, :]
+        image_detect = img[list_cau[i][0] - 40:list_cau[i + 1][0] - 5, list_cau[i][1] - 20:, :]
         if i < 9:
-            cv2.imwrite(file + f"/cau0{i + 1}.png", image_detect)
+            cv2.imwrite(file+'/questions' + f"/cau0{i + 1}.png", image_detect)
         else:
-            cv2.imwrite(file + f"/cau{i + 1}.png", image_detect)
+            cv2.imwrite(file+'/questions' + f"/cau{i + 1}.png", image_detect)
     print(f"detect cau thanh cong!")
     return "Cắt câu hỏi thành công!"
