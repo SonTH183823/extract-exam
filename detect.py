@@ -1,6 +1,6 @@
 import cv2
 import os
-def detect_cau(file, column):
+def detect_questions(file, column):
     img = cv2.imread(file + "/image_full.png", cv2.IMREAD_COLOR)
     image_cau = cv2.imread(file + "/cau.png", cv2.IMREAD_COLOR)
     os.mkdir(file+'/questions')

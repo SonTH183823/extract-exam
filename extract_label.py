@@ -1,6 +1,6 @@
 import cv2
 
-def check_cau(image_cau, img, column):
+def is_label(image_cau, img, column):
     list_cau = []
 
     for i in range(img.shape[0] - image_cau.shape[0]):
@@ -16,7 +16,7 @@ def check_cau(image_cau, img, column):
         return False
 
 
-def extract_cau_(folder):
+def extract_cau_label(folder):
     img = cv2.imread(folder + "/page1_cutted.png", cv2.IMREAD_COLOR)
     h, w, c = img.shape
     column_white = img[h * 3 // 4:, 0, :]
@@ -33,7 +33,7 @@ def extract_cau_(folder):
                 if equal_image1 == False:
                     img_cau = img[h - img_column.shape[0] + line - 40:h - img_column.shape[0] + line + 30,
                               column - 10:column + 150, :]
-                    if check_cau(img_cau, img, column):
+                    if is_label(img_cau, img, column):
                         cv2.imwrite(folder + "/cau.png", img_cau)
                         return column
                 line -= 1

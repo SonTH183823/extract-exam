@@ -1,6 +1,6 @@
 import pdftoimage
 import detect
-import extract_cau
+import extract_label
 import os
 
 # ui
@@ -31,10 +31,10 @@ def process(file):
             image_full_text_done.configure(text="B3: Đang thực hiện tách câu hỏi")
             progress['value'] = 60
             window.update_idletasks()
-            column = extract_cau.extract_cau_(container_folder)
+            column = extract_label.extract_cau_label(container_folder)
             progress['value'] = 80
             window.update_idletasks()
-            detect.detect_cau(container_folder, column=column)
+            detect.detect_questions(container_folder, column=column)
             progress['value'] = 100
             window.update_idletasks()
             image_full_text_done.configure(text="Hoàn thành")
