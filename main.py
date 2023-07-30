@@ -31,12 +31,10 @@ def process(file):
             image_full_text_done.configure(text="B3: Đang thực hiện tách câu hỏi")
             progress['value'] = 60
             window.update_idletasks()
-            # image_full_text_done1.configure(text="B2: " + str(doneImageFull))
-            # image_full_text_done2.configure(text="B3: Đang thực hiện...")
             column = extract_cau.extract_cau_(container_folder)
             progress['value'] = 80
             window.update_idletasks()
-            done = detect.detect_cau(container_folder, column=column)
+            detect.detect_cau(container_folder, column=column)
             progress['value'] = 100
             window.update_idletasks()
             image_full_text_done.configure(text="Hoàn thành")
@@ -58,14 +56,14 @@ if __name__ == "__main__":
 
     window = Tk()
     window.title("Cắt đề thi")
-    window.geometry("500x250")
+    window.geometry("1000x250")
 
     nameProgram = tkinter.Label(window, text="Cắt đề thi")
     nameProgram.config(font=("Arial", 30))
     nameProgram.pack(pady=10)
     btnChose = Button(window, text="Chọn file đề thi", command=handleButton)
     btnChose.place(x=30, y=70)
-    progress = Progressbar(window, orient=HORIZONTAL, length=400, mode='determinate')
+    progress = Progressbar(window, orient=HORIZONTAL, length=900, mode='determinate')
     progress.place(x=30, y=170)
     image_full_text_done = tkinter.Label(window, text="Tiến trình")
     image_full_text_done.config(font=("Arial", 14))
